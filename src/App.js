@@ -1,38 +1,56 @@
-import logo from "./logo.svg";
+import react,{useState} from "react";
 import "./App.css";
-import CounterComponent from "./CounterComponent";
-import { Link } from "react-router";
-
+import Setcookies from './Cookies/Setcookies'
+import { Link, Route,Routes } from "react-router";
+import Getcookievlaue from "./Cookies/Getcookievlaue";
+import CookieDataProvider from './Cookies/Cookiedataprovider';
+import LoginPage from "./Cookies/LoginPage";
+import Page1 from "./Cookies/Page1";
 function App() {
   return (
     <>
-  
-       <nav class="navbar navbar-expand-lg navbar-light bg-primary text-light">
-  <a class="navbar-brand text-light" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link text-light" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="#">Contact</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" href="#">Disabled</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-      <div>
-        <CounterComponent />
-      </div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-primary">
+        <a className="navbar-brand text-light ms-2" href="#">
+          Navbar
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item active">
+              <Link to="/" className="nav-link text-light">
+                Create
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/search" className="nav-link text-light">
+                Retrieve
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/Home" className="nav-link text-light">
+                 Home
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <CookieDataProvider>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/search" element={<Getcookievlaue />} />
+          <Route path="/Home" element={<Page1 />}/>
+        </Routes>
+      </CookieDataProvider>
     </>
   );
 }
